@@ -1,0 +1,20 @@
+@import "../../../../../../prebuilt/scss/mixins";
+@import "../../../../../../prebuilt/scss/variables";
+
+.root {
+  @include applyPreset(createPreset(11px, 500, 15px, normal));
+  margin-right: 10px;
+  margin-top: 5px;
+  display: inline-block;
+  padding: 2px 5px;
+  border: 1px solid rgba(map-get($colors, 'black-main'), .1);
+  border-radius: 4px;
+  background-color: map-get($colors, 'background');
+  color: map-get($colors, 'typography-main');
+  //cursor: pointer;
+
+  //&:hover, &_active {
+  //  background-color: map-get($colors, 'green-light');
+  //  border-color: map-get($colors, 'green-main');
+  //}
+}

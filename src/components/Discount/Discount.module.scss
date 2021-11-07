@@ -1,0 +1,12 @@
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  &__percent {
+    display: inline-block;
+    padding: 2px 4px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(map-get($colors, 'green-main'), .3);
+    color: map-get($colors, 'green-dark');
+  }
+}

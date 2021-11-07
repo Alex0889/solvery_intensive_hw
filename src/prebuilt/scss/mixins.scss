@@ -1,0 +1,90 @@
+@import "./variables.scss";
+
+@mixin breakpoint($breakpoint-name) {
+  $min-width: map-get($breakpoints, $breakpoint-name);
+
+  @if ($min-width != null) {
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @debug "Breakpoint is not described!";
+  }
+}
+
+@mixin container() {
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint-name, $_ in $breakpoints {
+    @include breakpoint(($breakpoint-name)) {
+      $width: map-get($container-widths, $breakpoint-name);
+
+      width: $width;
+      min-width: $width;
+      max-width: $width;
+    }
+  }
+}
+
+@function createPreset($font-size, $font-weight, $line-height, $letter-spacing) {
+  @return (
+    font-size: $font-size,
+    font-weight: $font-weight,
+    line-height: $line-height,
+    letter-spacing: $letter-spacing
+  );
+}
+
+@mixin applyPreset($preset) {
+  @each $prop-name, $prop-value in $preset {
+    #{$prop-name}: $prop-value;
+  }
+}
+
+@mixin columnList {
+  & > h3 {
+    margin-bottom: 15px;
+  }
+
+  & > ul {
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 23px;
+  }
+}
+
+@mixin oneColumnList {
+  @include columnList;
+
+  & li {
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    width: 100%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 2px;
+      height: 2px;
+      background-color: map-get($colors, 'typography-main');
+    }
+  }
+}
+
+@mixin twoColumnList {
+  @include columnList;
+  & li {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  &__listItem {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    gap: 20px;
+  }
+}

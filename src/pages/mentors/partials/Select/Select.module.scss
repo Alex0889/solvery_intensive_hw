@@ -1,0 +1,12 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+    @include applyPreset(createPreset(16px, 500, 24px, normal));
+    color: map-get($colors, 'typography-secondary');
+    width: 100%;
+    background-color: rgba(map-get($colors, 'border-main'), .5);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+}

@@ -1,0 +1,40 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  &__header {
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    @include applyPreset(createPreset(14px, 500, 20px, pre-line));
+    max-width: 100%;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+  }
+
+  &__link {
+    width: 100%;
+    color: map-get($colors, 'primary');
+  }
+
+  &__reviews {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  &__review {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    & > * {
+      display: flex;
+      margin-right: 5px;
+    }
+
+    & > span {
+      @include applyPreset(createPreset(16px, 600, 20px, normal));
+    }
+  }
+}

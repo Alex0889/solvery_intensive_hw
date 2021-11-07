@@ -1,0 +1,27 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__img {
+    max-height: 350px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__footer {
+    @include applyPreset(createPreset(13px, 500, 18px, normal));
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: map-get($colors, 'green-main');
+
+    &_red {
+      color: map-get($colors, 'red-main');
+    }
+  }
+}

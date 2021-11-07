@@ -1,0 +1,30 @@
+@import "./typography.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font;
+}
+
+a {
+  text-decoration: none;
+  color: map-get($colors, 'primary');
+
+  &:visited {
+    color: unset;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  color: map-get($colors, 'typography-main');
+}
+
+a, div, li, p {
+  font-size: 14px;
+  line-height: 19px;
+}

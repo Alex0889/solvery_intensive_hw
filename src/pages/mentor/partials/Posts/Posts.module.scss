@@ -1,0 +1,14 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  @include oneColumnList;
+
+  &__link {
+    text-decoration: underline;
+
+    &:hover {
+      color: map-get($colors, 'typography-main');
+    }
+  }
+}

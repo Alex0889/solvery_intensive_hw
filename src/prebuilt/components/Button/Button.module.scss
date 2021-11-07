@@ -1,0 +1,44 @@
+@import "src/prebuilt/scss/variables";
+
+.button {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .3s linear;
+
+  &.primary {
+    border: 1px solid map-get($colors, 'primary');
+    background-color: map-get($colors, 'primary');
+    color: map-get($colors, 'background');
+
+    &:hover {
+      border: 1px solid map-get($colors, 'primary-dark');
+      background-color: map-get($colors, 'primary-dark');
+    }
+  }
+
+  &.outlined {
+    border: 1px solid map-get($colors, 'typography-main');
+    background-color: map-get($colors, 'background');
+    color: map-get($colors, 'typography-main');
+
+    &:hover {
+      color: map-get($colors, 'primary');
+    }
+  }
+
+  &_disabled {
+    border: 1px solid map-get($colors, 'typography-secondary') !important;
+    background-color: map-get($colors, 'typography-secondary') !important;
+    color: map-get($colors, 'background') !important;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &_fullwidth {
+    padding: 10px 0;
+    width: 100%;
+  }
+}

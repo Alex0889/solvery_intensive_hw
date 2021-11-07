@@ -1,0 +1,60 @@
+@import "src/prebuilt/scss/variables";
+
+.root {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1em;
+  line-height: 20px;
+  user-select: none;
+
+  & input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(map-get($colors, 'border-main'), .5);
+  }
+
+  &:hover input ~ &__checkmark {
+    background-color: map-get($colors, 'typography-secondary');
+  }
+
+  & input:checked ~ &__checkmark {
+    background-color: map-get($colors, 'primary');
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  & input:checked ~ &__checkmark:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    display: block;
+  }
+
+  & &__checkmark:after {
+    width: 5px;
+    height: 10px;
+    border: solid map-get($colors, 'background');
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+}

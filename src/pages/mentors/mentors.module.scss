@@ -1,0 +1,36 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  &__mentorsCount {
+    @include applyPreset(createPreset(16px, 500, 24px, normal));
+    color: map-get($colors, 'typography-secondary');
+    margin-left: 25px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  & li {
+    margin-bottom: 0;
+  }
+
+  &__addMoreBtn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  &__loader {
+    height: 100%;
+    padding: 0 20px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: map-get($colors, 'primary');
+    }
+  }
+}
