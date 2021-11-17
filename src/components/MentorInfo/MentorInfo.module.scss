@@ -6,8 +6,17 @@
     margin-bottom: 8px;
   }
 
+  &__hero {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10px;
+    }
+  }
+
   &__description {
     @include applyPreset(createPreset(14px, 500, 20px, pre-line));
+
     max-width: 100%;
     margin-bottom: 10px;
     white-space: pre-wrap;
@@ -35,6 +44,20 @@
 
     & > span {
       @include applyPreset(createPreset(16px, 600, 20px, normal));
+    }
+  }
+
+  &__avatar {
+    img {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    @include breakpoint(md) {
+      display: none;
     }
   }
 }

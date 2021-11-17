@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import s from "./Avatar.module.scss";
 import clsx from "clsx";
+import {getImgLink} from "../../../app/helpers";
 
 export type AvatarProps = {
   readonly className?: string;
@@ -15,7 +16,7 @@ const Avatar: FC<AvatarProps> = ({
                                  }) => {
   return (
     <div className={clsx(s.root, className)}>
-      <img src={`https://solvery.io/${url}`} alt={alt}/>
+      <img src={getImgLink(url)} alt={alt}/>
     </div>
   );
 };

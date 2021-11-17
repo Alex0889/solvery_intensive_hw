@@ -1,21 +1,27 @@
 import React, {FC} from 'react';
-import {IMentorFull} from "../../../../app/interfaces";
+import {IMentor} from "../../../../app/interfaces";
 import s from "./Info.module.scss";
 import MentorInfo from "../../../../components/MentorInfo";
 import {Card} from "../../../../prebuilt/components";
 import clsx from "clsx";
 
 export type InfoProps = {
-  readonly user: IMentorFull,
-  readonly classNames?: string
+  readonly user: IMentor,
+  readonly className?: string
 }
 
-const Info: FC<InfoProps> = ({
-                               user,
-                               classNames
-                             }) => {
+const Info: FC<InfoProps> = (
+  {
+    user,
+    className
+  }) => {
   return (
-    <Card className={clsx(s.root, classNames)}><MentorInfo mentor={user} isMentorPage={true}/></Card>
+    <Card
+      className={clsx(s.root, className)}>
+      <MentorInfo
+        mentor={user}
+        isMentorPage={true}/>
+    </Card>
   );
 };
 

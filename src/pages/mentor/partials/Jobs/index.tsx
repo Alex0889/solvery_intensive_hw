@@ -1,24 +1,25 @@
 import React, {FC} from 'react';
-import {IMentorFull} from "../../../../app/interfaces";
+import {IMentor} from "../../../../app/interfaces";
 import s from "./Jobs.module.scss";
-import CardSkeleton from "../../../../components/CardSkeleton";
+import CardWrapper from "../../../../components/CardWrapper";
 import clsx from "clsx";
 import {dateBuilder, propExists} from "../../helpers";
 
 export type JobsProps = {
-  readonly user: IMentorFull,
-  readonly classNames?: string
+  readonly user: IMentor,
+  readonly className?: string
 }
 
-const Jobs: FC<JobsProps> = ({
-                               user,
-                               classNames
-                             }) => {
+const Jobs: FC<JobsProps> = (
+  {
+    user,
+    className
+  }) => {
   return (
-    <CardSkeleton
+    <CardWrapper
       title={'Резюме'}
       propertyExists={propExists(user.jobs)}
-      classNames={clsx(s.root, classNames)}
+      className={clsx(s.root, className)}
     >
       {user.jobs!.map((job, idx) => (
         <div key={`${job.startDate}_${idx}`} className={s.root__listItem}>
@@ -36,7 +37,7 @@ const Jobs: FC<JobsProps> = ({
           </div>
         </div>
       ))}
-    </CardSkeleton>
+    </CardWrapper>
   );
 };
 

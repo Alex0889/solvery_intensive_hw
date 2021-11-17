@@ -1,19 +1,23 @@
 import React, {FC} from 'react';
-import {IMentor} from "../../../../app/interfaces";
-import {Info, Actions, Avatar} from "./partials";
+import {IMentorCard} from "../../../../app/interfaces";
+import {Actions, Avatar} from "./partials";
 import {Card} from "../../../../prebuilt/components";
 import s from './MentorCard.module.scss';
-import {fullNameBuilder} from "../../../../app/helpers";
+import {getMentorFullName} from "../../../../app/helpers";
+import MentorInfo from "../../../../components/MentorInfo";
 
 export type MentorProps = {
-  mentor: IMentor
+  mentor: IMentorCard
 }
 
 const MentorCard: FC<MentorProps> = ({mentor}) => {
   return (
     <Card className={s.root}>
-      <Avatar url={mentor.avatar} alt={fullNameBuilder(mentor.firstName, mentor.lastName)}/>
-      <Info mentor={mentor}/>
+      <Avatar
+        className={s.root__avatar}
+        url={mentor.avatar}
+        alt={getMentorFullName(mentor.firstName, mentor.lastName)}/>
+      <MentorInfo mentor={mentor}/>
       <Actions mentor={mentor}/>
     </Card>
   );

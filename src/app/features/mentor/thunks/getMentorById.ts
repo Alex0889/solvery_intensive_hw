@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {MentorApi} from "./MentorApi";
 import {Exception} from "../../../createException";
-import {IMentorFull} from "../../../interfaces";
+import {IMentor} from "../../../interfaces";
 
-export interface IMentorFullResponse {
-  readonly user: IMentorFull;
+type IMentorFullResponse = {
+  readonly user: IMentor;
 }
 
 export const getMentorById = createAsyncThunk(

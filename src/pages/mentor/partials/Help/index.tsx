@@ -1,29 +1,33 @@
 import React, {FC} from 'react';
-import CardSkeleton from "../../../../components/CardSkeleton";
-import {IMentorFull} from "../../../../app/interfaces";
+import CardWrapper from "../../../../components/CardWrapper";
+import {IMentor} from "../../../../app/interfaces";
 import s from './Help.module.scss';
 import clsx from "clsx";
 import {propExists} from "../../helpers";
 
 export type HelpProps = {
-  readonly user: IMentorFull,
-  readonly classNames?: string
+  readonly user: IMentor,
+  readonly className?: string
 }
 
-const Help: FC<HelpProps> = ({
-                               user,
-                               classNames
-                             }) => {
+const Help: FC<HelpProps> = (
+  {
+    user,
+    className
+  }) => {
   return (
-    <CardSkeleton
+    <CardWrapper
       title={'С чем могу помочь'}
       propertyExists={propExists(user.solutions)}
-      classNames={clsx(s.root, classNames)}
-    >
+      className={clsx(s.root, className)}>
       {user.solutions!.map(solution => (
-        <div key={solution.id} className={s.root__listItem}>{solution.description}</div>
+        <div
+          key={solution.id}
+          className={s.root__listItem}>
+          {solution.description}
+        </div>
       ))}
-    </CardSkeleton>
+    </CardWrapper>
   );
 };
 

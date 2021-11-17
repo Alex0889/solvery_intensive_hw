@@ -2,6 +2,7 @@
 @import "src/prebuilt/scss/mixins";
 
 .root {
+  flex: 0 0;
   padding: 32px 0;
   background-color: map-get($colors, typography-main);
 

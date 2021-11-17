@@ -1,24 +1,25 @@
 import React, {FC} from 'react';
-import {IMentorFull} from "../../../../app/interfaces";
+import {IMentor} from "../../../../app/interfaces";
 import s from "./Reviews.module.scss";
 import {Typography} from "../../../../prebuilt/components";
-import CardSkeleton from "../../../../components/CardSkeleton";
+import CardWrapper from "../../../../components/CardWrapper";
 import clsx from "clsx";
-import {dateBuilder, objExists, propExists} from "../../helpers";
+import {dateBuilder, objExists} from "../../helpers";
 
 export type ReviewsProps = {
-  readonly user: IMentorFull,
-  readonly classNames?: string
+  readonly user: IMentor,
+  readonly className?: string
 }
 
-const Reviews: FC<ReviewsProps> = ({
-                                     user,
-                                     classNames
-                                   }) => {
+const Reviews: FC<ReviewsProps> = (
+  {
+    user,
+    className
+  }) => {
   return (
-    <CardSkeleton title={'Отзывы'}
-                  propertyExists={(objExists(user.reviewBoard)) && (propExists(user.reviewBoard && user.reviewBoard.messages))}
-                  classNames={clsx(s.root, classNames)}>
+    <CardWrapper title={'Отзывы'}
+                 propertyExists={(objExists(user.reviewBoard)) && (Boolean(user.reviewBoard?.messages))}
+                 className={clsx(s.root, className)}>
       {user.reviewBoard && user.reviewBoard.messages.map(message => (
         <div key={message.id} className={s.root__listItem}>
           <div className={s.root__header}>
@@ -44,7 +45,7 @@ const Reviews: FC<ReviewsProps> = ({
 
         </div>
       ))}
-    </CardSkeleton>
+    </CardWrapper>
   );
 };
 

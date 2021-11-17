@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import { Typography } from "../../../../prebuilt/components/Typography";
+import { Typography } from "../../../../prebuilt/components";
 import styles from "./hero.module.scss";
 
 export type HeroProps = {
@@ -16,20 +16,21 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
   const [code, setCode] = useState("<let's\n      code />");
 
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
     function animateCode() {
       setCode(LAGGED_1_CODE);
 
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setCode(LEARN_CODE);
 
-        setTimeout(() => {
+        timeout = setTimeout(() => {
           setCode(LAGGED_2_CODE);
 
-          setTimeout(() => {
+          timeout = setTimeout(() => {
             setCode(INITIAL_CODE);
 
-            setTimeout(() => {
-              animateCode();
+            timeout = setTimeout(() => {
+               animateCode();
             }, 3500);
           }, 200);
         }, 3500);
@@ -37,6 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
     }
 
     animateCode();
+    return () => {clearTimeout(timeout)}
   }, []);
 
   return (

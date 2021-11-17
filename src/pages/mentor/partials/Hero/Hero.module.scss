@@ -20,7 +20,7 @@
     margin-top: 15px;
     color: map-get($colors, 'green-main');
 
-    &_red {
+    &.red {
       color: map-get($colors, 'red-main');
     }
   }

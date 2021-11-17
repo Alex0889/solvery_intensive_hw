@@ -1,46 +1,43 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getAllMentors} from "./thunks/getAllMentors";
-import {IMentor, IMentorFull} from "../../interfaces";
+import {IMentorCard, IMentor} from "../../interfaces";
 import {getMentorById} from "./thunks/getMentorById";
 
 export type MentorsState = {
   mentors: {
-    entities: {
-      totalMentorsCount: number,
-      mentors: IMentor[]
-    },
+    totalMentorsCount: number,
+    mentors: IMentorCard[],
     isLoading: boolean,
     error: string | undefined,
   },
   mentor: {
-    user: IMentorFull,
+    user: IMentor | null,
     isLoading: boolean,
     error: string | undefined,
-  }
+  };
 }
 
 const initialState: MentorsState = {
   mentors: {
-    entities: {
-      totalMentorsCount: 0,
-      mentors: []
-    },
+    totalMentorsCount: 0,
+    mentors: [],
     isLoading: false,
     error: undefined
   },
   mentor: {
-    user: {} as IMentorFull,
+    user: null,
     isLoading: false,
     error: undefined
-  }
+  },
 }
 
-const mentorReducer = createSlice({
+const mentorSlice = createSlice({
     name: 'mentor',
     initialState,
     reducers: {
-      clearMentors: (state) => {
-        state.mentors.entities = initialState.mentors.entities;
+      clearMentors(state) {
+        state.mentors = initialState.mentors;
+
       },
     },
     extraReducers: (builder) => {
@@ -50,13 +47,15 @@ const mentorReducer = createSlice({
         })
         .addCase(getAllMentors.fulfilled, ({mentors}, {payload}) => {
           mentors.isLoading = false;
-          mentors.entities.mentors.push(...payload.mentors);
-          mentors.entities.totalMentorsCount = payload.totalMentorsCount;
+          mentors.mentors.push(...payload.mentors);
+          mentors.totalMentorsCount = payload.totalMentorsCount;
         })
         .addCase(getAllMentors.rejected, ({mentors}, {error}) => {
           mentors.isLoading = false;
           mentors.error = error.message;
-        })
+        });
+
+      builder
         .addCase(getMentorById.pending, ({mentor}) => {
           mentor.isLoading = true;
         })
@@ -72,6 +71,6 @@ const mentorReducer = createSlice({
   }
 );
 
-export const { clearMentors } = mentorReducer.actions
+export const {clearMentors} = mentorSlice.actions
 
-export default mentorReducer.reducer;
+export default mentorSlice.reducer;

@@ -4,6 +4,8 @@
 .root {
   @include container();
 
+  flex: 1 0;
+
   animation: fadeIn 0.15s ease-in-out forwards;
 
   &.has_header {

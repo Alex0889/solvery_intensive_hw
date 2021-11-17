@@ -3,9 +3,11 @@
 
 .root {
   @include container;
+
   width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
+
   @include breakpoint(lg) {
     width: 80%;
     min-width: 80%;
@@ -14,7 +16,7 @@
 
   &__top {
     display: grid;
-    grid-template-rows: 20% 1fr;
+    grid-template-rows: 40px auto;
     margin-bottom: 10px;
 
     @include breakpoint(sm) {
@@ -27,6 +29,10 @@
       grid-template-columns: 30% 1fr;
       gap: 20px;
     }
+  }
+
+  &__select {
+    height: 30px;
   }
 
 
@@ -42,9 +48,13 @@
 
   &__bottom {
     display: grid;
-    grid-template-columns: 60% 1fr;
-    gap: 20%;
-    align-items: center;
+    grid-template-rows: 1fr;
+
+    @include breakpoint(sm) {
+      grid-template-columns: 60% 1fr;
+      gap: 20%;
+      align-items: center;
+    }
   }
 
   &__actions {

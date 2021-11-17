@@ -36,4 +36,4 @@ export const Page: React.FC<PageProps> = ({
       {hasFooter && <Footer />}
     </>
   );
-};
+}

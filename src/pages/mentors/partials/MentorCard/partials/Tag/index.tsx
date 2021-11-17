@@ -8,14 +8,15 @@ export type TagProps = {
   readonly active?: boolean,
 }
 
-const Tag = ({
-               className,
-               children,
-               active,
-               ...props
-             }: TagProps) => {
+const Tag = (
+  {
+    className,
+    children,
+    active,
+    ...props
+  }: TagProps) => {
   return (
-    <div className={clsx(s.root, (active && s.root_active), className)} {...props}>{children}</div>
+    <div className={clsx(s.root, (active && s.active), className)} {...props}>{children}</div>
   );
 };
 

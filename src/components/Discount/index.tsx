@@ -5,16 +5,17 @@ import clsx from "clsx";
 export type DiscountProps = {
   readonly condition: boolean,
   readonly percent: number,
-  readonly classNames?: string,
+  readonly className?: string,
 }
 
-const Discount: FC<DiscountProps> = ({
-                                       condition,
-                                       percent,
-                                       classNames
-                                     }) => {
+const Discount: FC<DiscountProps> = (
+  {
+    condition,
+    percent,
+    className
+  }) => {
   if (condition) return (
-    <div className={clsx(s.root, classNames)}>
+    <div className={clsx(s.root, className)}>
       Пакет {percent} занятий <span className={s.root__percent}>-{percent}%</span>
     </div>
   )

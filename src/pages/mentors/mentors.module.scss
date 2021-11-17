@@ -4,9 +4,11 @@
 .root {
   &__mentorsCount {
     @include applyPreset(createPreset(16px, 500, 24px, normal));
-    color: map-get($colors, 'typography-secondary');
+
     margin-left: 25px;
     margin-bottom: 10px;
+
+    color: map-get($colors, 'typography-secondary');
   }
 
   &__title {
@@ -21,6 +23,12 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    opacity: 1;
+    transition: opacity 3s cubic-bezier(1, 0, 1, 0);
+
+    &.hide {
+      opacity: 0;
+    }
   }
 
   &__loader {

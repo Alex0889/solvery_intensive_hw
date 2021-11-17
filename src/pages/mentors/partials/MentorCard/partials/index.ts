@@ -1,11 +1,9 @@
-import Avatar from "./Avatar";
+import Avatar from "../../../../../prebuilt/components/Avatar";
 import Actions from "./Actions";
-import Info from "./Info";
 import Tag from "./Tag";
 
 export {
   Avatar,
-  Info,
   Tag,
   Actions
 }

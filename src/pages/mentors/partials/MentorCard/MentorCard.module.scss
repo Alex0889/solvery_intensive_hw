@@ -2,12 +2,22 @@
 
 .root {
   @include container();
+
   display: grid;
-  grid-template-rows: 250px 1fr 20%;
+  grid-template-rows: 1fr;
   gap: 10px;
+
   @include breakpoint(md) {
     grid-template-rows: unset;
     grid-template-columns: 200px 1fr 20%;
     gap: 30px;
+  }
+
+  &__avatar {
+    display: none;
+
+    @include breakpoint(md) {
+      display: inline;
+    }
   }
 }

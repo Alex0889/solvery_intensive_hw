@@ -7,10 +7,12 @@ export type CheckboxProps = {
   readonly children: ReactNode;
 }
 
-const Checkbox: FC<CheckboxProps & InputHTMLAttributes<HTMLInputElement>> = ({
-                                                                               children,
-                                                                               className,
-                                                                               ...props}) => {
+const Checkbox: FC<CheckboxProps & InputHTMLAttributes<HTMLInputElement>> = (
+  {
+    children,
+    className,
+    ...props
+  }) => {
   return (
     <label className={clsx(s.root, className)}>
       {children}

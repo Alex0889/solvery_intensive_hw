@@ -1,20 +1,26 @@
 import React, {FC} from 'react';
 import s from "./MentorInfo.module.scss";
-import {Typography} from "../../prebuilt/components";
-import {fullNameBuilder, truncateString} from "../../app/helpers";
+import {Link, Typography} from "../../prebuilt/components";
+import {getMentorFullName, truncateString} from "../../app/helpers";
 import Tag from "../../pages/mentors/partials/MentorCard/partials/Tag";
-import {IMentor} from "../../app/interfaces";
+import {IMentorCard} from "../../app/interfaces";
 import {elemBuilder} from "./helpers";
+import {ROUTES} from "../../prebuilt/navigation/routes";
+import {useAppSelector} from "../../app/hook";
+import Avatar from "../../prebuilt/components/Avatar";
 
 type MentorInfoProps = {
-  readonly mentor: IMentor,
+  readonly mentor: IMentorCard,
   readonly isMentorPage?: boolean,
-}
+};
 
-const MentorInfo: FC<MentorInfoProps> = ({
-                                           mentor,
-                                           isMentorPage = false,
-                                         }) => {
+const MentorInfo: FC<MentorInfoProps> = (
+  {
+    mentor,
+    isMentorPage = false,
+  }) => {
+  const {filters: {filters: {tagIds}}} = useAppSelector();
+
   const reviewsStr = elemBuilder(mentor.reviewsCount, '👍', ['Отзыв', 'Отзыва', 'Отзывов']);
 
   const sessionsStr = elemBuilder(mentor.sessionsCount, '👨‍💻', ['Занятие проведено', 'Занятия проведено', 'Занятий проведено']);
@@ -28,14 +34,17 @@ const MentorInfo: FC<MentorInfoProps> = ({
   return (
     <div className={s.root}>
       <div className={s.root__header}>
-        <Typography
-          tag={"h3"}
-          preset={"h3"}
-          className={s.root__fullName}
-          color={"typography-main"}
-        >
-          {fullNameBuilder(mentor.firstName, mentor.lastName)}
-        </Typography>
+        <div className={s.root__hero}>
+          {!isMentorPage && <Avatar url={mentor.avatar} className={s.root__avatar}/>}
+          <Typography
+            tag={"h3"}
+            preset={"h3"}
+            className={s.root__fullName}
+            color={"typography-main"}
+          >
+            {getMentorFullName(mentor.firstName, mentor.lastName)}
+          </Typography>
+        </div>
         <Typography
           tag={"p"}
           className={s.root__location}
@@ -49,10 +58,13 @@ const MentorInfo: FC<MentorInfoProps> = ({
           preset={"paragraph1"}
         >
           {mentor.position}
-          {(!mentor.companyWebsite || !!mentor.companyName) && ' - '}
-          {!!mentor.companyWebsite ?
-            <a className={s.root__link} href={mentor.companyWebsite}>{mentor.companyName}</a>:
-            <span>{mentor.companyName}</span>}
+
+          {(!mentor.companyWebsite || Boolean(mentor.companyName)) && ' - '}
+
+          {Boolean(mentor.companyWebsite) ?
+            <a className={s.root__link} href={mentor.companyWebsite}>{mentor.companyName}</a> :
+            <span>{mentor.companyName}</span>
+          }
         </Typography>
       </div>
       <div className={s.root__body}>
@@ -67,7 +79,14 @@ const MentorInfo: FC<MentorInfoProps> = ({
       </div>
       <div className={s.root__tags}>
         {mentor.theme.tags.map(tag => (
-          <Tag key={tag.id}>{tag.name}</Tag>
+          <Link
+            key={tag.id}
+            href={{
+              pathname: ROUTES.mentors.url,
+              state: {tag: tag.id}
+            }}>
+            <Tag active={tagIds.includes(Number(tag.id))}>{tag.name}</Tag>
+          </Link>
         ))}</div>
     </div>
   );

@@ -7,17 +7,20 @@ export type WithSkeletonProps = {
 
   readonly skeletonSlot?: React.ReactNode;
   readonly emptySpaceSlot?: React.ReactNode;
+  readonly errorSlot?: React.ReactNode;
 };
 
-export const WithSkeleton: React.FC<WithSkeletonProps> = ({
-                                                            isLoading,
-                                                            isEmpty,
-                                                            error,
+export const WithSkeleton: React.FC<WithSkeletonProps> = (
+  {
+    isLoading,
+    isEmpty,
+    error,
 
-                                                            skeletonSlot,
-                                                            emptySpaceSlot,
-                                                            children,
-                                                          }) => {
+    skeletonSlot,
+    emptySpaceSlot,
+    errorSlot,
+    children,
+  }) => {
   if (!isEmpty && !isLoading && !error) {
     return <>{children}</>;
   }
@@ -28,6 +31,10 @@ export const WithSkeleton: React.FC<WithSkeletonProps> = ({
 
   if (!isLoading && isEmpty && !error) {
     return <>{emptySpaceSlot || "no data provided"}</>;
+  }
+
+  if (error) {
+    return <>{errorSlot || "Something went wrong"}</>;
   }
 
   return <>{error}</>;

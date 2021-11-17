@@ -2,9 +2,10 @@ import clsx from "clsx";
 import React from "react";
 import styles from "./link.module.scss";
 import { Link as RouterLink } from "react-router-dom";
+import {LocationDescriptorObject} from "history";
 
 export type LinkProps = {
-  readonly href: string;
+  readonly href: string | LocationDescriptorObject<{}>;
   readonly theme?: "primary" | "primary-negative";
   readonly size?: "inherit" | "sm" | "md";
   readonly target?: React.AnchorHTMLAttributes<HTMLHRElement>["target"];
